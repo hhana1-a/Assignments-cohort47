@@ -18,9 +18,8 @@ Full description at: https://github.com/HackYourFuture/Assignments/blob/main/3-U
    should result in a network (DNS) error.
 ------------------------------------------------------------------------------*/
 async function requestData(url) {
-  // TODO return a promise using `fetch()`
 
-  try {
+
     const response = await fetch(url);
 
     if (!response.ok) {
@@ -28,12 +27,9 @@ async function requestData(url) {
         `Failed to fetch data from ${url}. Status: ${response.status}`
       );
     }
-    const data = await response.json();
+    const data = response.json();
     return data;
-  } catch (error) {
-    console.error('Rejected!', error.message);
-    throw error;
-  }
+  
 }
 
 function renderImage(data) {
@@ -41,6 +37,7 @@ function renderImage(data) {
 
   const image = document.createElement('img');
   image.src = data.img;
+  image.alt = data.alt; 
   document.body.appendChild(image);
 }
 

@@ -25,17 +25,14 @@ parameters and return values to pass data back and forth.
 
 const url = 'https://pokeapi.co/api/v2/pokemon?limit=151';
 async function fetchData(url) {
-  try {
+
     const response = await fetch(url);
 
     if (!response.ok) {
       throw new Error(`Failed to fetch ${response.status}`);
     }
-    return await response.json();
-  } catch (error) {
-    console.error('Rejected!', error.message);
-    throw error;
-  }
+    return response.json();
+ 
 }
 
 async function fetchAndPopulatePokemons() {
